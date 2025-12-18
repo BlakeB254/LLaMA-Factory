@@ -1,0 +1,58 @@
+# CDX Platform - Llama 3.x LoRA SFT Configuration
+# For: Llama-3.2-3B-Instruct, Llama-3.1-8B-Instruct
+
+### Model
+model_name_or_path: /home/codex450/cdx/resources/models/llm/llama/Llama-3.2-3B-Instruct
+# Alternative: /home/codex450/cdx/resources/models/llm/llama/Llama-3.1-8B-Instruct
+# Alternative: meta-llama/Llama-3.2-3B-Instruct (HuggingFace)
+trust_remote_code: true
+
+### Method
+stage: sft
+do_train: true
+finetuning_type: lora
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target: all
+
+### Dataset
+dataset: cdx_identity,alpaca_en_demo
+dataset_dir: /home/codex450/ai-tools/LLaMA-Factory/cdx/datasets
+template: llama3
+cutoff_len: 4096
+max_samples: 10000
+overwrite_cache: true
+preprocessing_num_workers: 16
+dataloader_num_workers: 4
+
+### Output (CDX Model Registry)
+output_dir: /home/codex450/cdx/resources/models/fine-tuning/lora/llama3
+logging_steps: 10
+save_steps: 500
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+save_safetensors: true
+report_to: tensorboard
+
+### Train (DGX Spark Optimized)
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 4
+learning_rate: 2.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+flash_attn: fa2
+ddp_timeout: 180000000
+gradient_checkpointing: true
+optim: adamw_torch
+resume_from_checkpoint: null
+
+### Eval (Optional)
+# eval_dataset: alpaca_en_demo
+# val_size: 0.1
+# per_device_eval_batch_size: 2
+# eval_strategy: steps
+# eval_steps: 500

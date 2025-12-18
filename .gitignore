@@ -180,3 +180,9 @@ wandb/
 swanlog/
 generated_predictions.jsonl
 predictions_score.json
+
+# CDX Platform specific
+cdx/outputs/
+cdx/datasets/*.json
+!cdx/datasets/dataset_info.json
+!cdx/datasets/cdx_identity.json

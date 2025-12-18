@@ -1,0 +1,57 @@
+{
+  "cdx_identity": {
+    "file_name": "cdx_identity.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "cdx_business": {
+    "file_name": "cdx_business.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "cdx_creative": {
+    "file_name": "cdx_creative.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "cdx_code": {
+    "file_name": "cdx_code.json",
+    "columns": {
+      "prompt": "instruction",
+      "query": "input",
+      "response": "output"
+    }
+  },
+  "cdx_multimodal": {
+    "file_name": "cdx_multimodal.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages",
+      "images": "images"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "alpaca_en_demo": {
+    "hf_hub_url": "llamafactory/alpaca_en"
+  },
+  "alpaca_zh_demo": {
+    "hf_hub_url": "llamafactory/alpaca_zh"
+  },
+  "mllm_demo": {
+    "hf_hub_url": "llamafactory/mllm_demo"
+  }
+}

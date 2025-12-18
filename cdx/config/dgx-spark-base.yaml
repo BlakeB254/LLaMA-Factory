@@ -1,0 +1,46 @@
+# CDX Platform - DGX Spark Base Configuration
+# Optimized for NVIDIA GB10 Blackwell Architecture
+# CUDA 13.0 | Driver 580.95.05
+
+### Hardware Optimizations (DGX Spark)
+bf16: true                          # Blackwell native bf16 support
+flash_attn: fa2                     # FlashAttention-2 for Blackwell
+ddp_timeout: 180000000              # Extended timeout for large models
+gradient_checkpointing: true        # Memory optimization
+
+### Common Training Settings
+per_device_train_batch_size: 2      # Optimized for GB10 Unified Memory
+gradient_accumulation_steps: 4      # Effective batch size = 8
+learning_rate: 2.0e-4
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+num_train_epochs: 3.0
+
+### LoRA Defaults
+finetuning_type: lora
+lora_rank: 16                       # Higher rank for quality
+lora_alpha: 32                      # Standard alpha = 2x rank
+lora_dropout: 0.05
+lora_target: all                    # Target all linear layers
+
+### Dataset Processing
+preprocessing_num_workers: 16       # Utilize DGX Spark CPU cores
+dataloader_num_workers: 4
+overwrite_cache: true
+
+### Output Settings
+logging_steps: 10
+save_steps: 500
+plot_loss: true
+overwrite_output_dir: true
+save_only_model: false
+report_to: tensorboard             # TensorBoard logging
+
+### Memory Optimization for Unified Memory
+optim: adamw_torch                 # PyTorch native AdamW
+save_safetensors: true             # SafeTensors format
+
+### Paths (CDX Model Registry)
+# Base paths - override in model-specific configs
+# model_name_or_path: /home/codex450/cdx/resources/models/llm/{model}
+# output_dir: /home/codex450/cdx/resources/models/fine-tuning/lora/{model}
